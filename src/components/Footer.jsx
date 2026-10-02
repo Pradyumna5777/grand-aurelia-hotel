@@ -329,7 +329,7 @@ const Footer = () => {
             </p>
             <span className="hidden sm:block w-1 h-1 rounded-full bg-stone-100/20" />
             <p className="flex items-center gap-1.5">
-              Handcrafted in <span className="text-primary">Udaipur</span>
+              Handcrafted by <span className="text-primary">Satyam Anand</span>
               <span className="text-primary">🇮🇳</span>
             </p>
           </div>
