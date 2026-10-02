@@ -1,0 +1,294 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Gruppo&family=Indie+Flower&display=swap');
+
+@theme {
+  /* ==== Primary Palette: Champagne Gold ==== */
+  --color-primary: #C9A961;
+  --color-primary-light: #E0C68B;
+  --color-primary-dark: #A8894A;
+
+  /* ==== Secondary: Deep Obsidian ==== */
+  --color-secondary: #0F0F0F;
+  --color-secondary-light: #1A1A1A;
+
+  /* ==== Neutrals ==== */
+  --color-ivory: #FAF7F2;
+  --color-stone-50: #F5F3EF;
+  --color-stone-100: #E8E4DD;
+  --color-stone-200: #D4CFC5;
+
+  --color-accent: #B8935A;
+
+  /* ==== Typography ==== */
+  --font-sans:    "Comfortaa", system-ui, sans-serif;   /* Body + headings */
+  --font-serif:   "Comfortaa", serif;                   /* Aliased so existing .font-serif still works */
+  --font-logo:    "Comfortaa", sans-serif;              /* Brand wordmark */
+  --font-display: "Gruppo", sans-serif;                 /* Eyebrows, labels, buttons */
+  --font-script:  "Indie Flower", cursive;              /* Signature accents */
+
+  /* ==== Shadows ==== */
+  --shadow-glass: 0 8px 32px 0 rgba(15, 15, 15, 0.08);
+  --shadow-glass-lg: 0 20px 60px 0 rgba(15, 15, 15, 0.15);
+  --shadow-luxury: 0 25px 50px -12px rgba(201, 169, 97, 0.25);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    color: var(--color-secondary);
+    background-color: var(--color-ivory);
+    letter-spacing: 0.005em;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-sans);              /* → Comfortaa */
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  h1 {
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+  }
+}
+
+@layer components {
+  /* ============ GLASSMORPHISM UTILITIES ============ */
+  .glass {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-dark {
+    background: rgba(15, 15, 15, 0.55);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-glass-lg);
+  }
+
+  .glass-gold {
+    background: rgba(201, 169, 97, 0.12);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-glass);
+  }
+
+  /* ============ PREMIUM BUTTONS ============ */
+  .btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-secondary);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201, 169, 97, 0.45);
+  }
+
+  .btn-primary:hover::before {
+    opacity: 1;
+  }
+
+  .btn-primary > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--color-secondary);
+    border: 1.5px solid var(--color-secondary);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-secondary);
+    color: var(--color-ivory);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 15, 15, 0.15);
+  }
+
+  .btn-glass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  /* ============ TYPOGRAPHY ============ */
+  .section-title {
+    font-family: var(--font-sans);              /* Comfortaa */
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #6b6b6b;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);           /* Gruppo */
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--color-primary-dark);
+  }
+
+  /* ============ FROSTED DIVIDER ============ */
+  .divider-gold {
+    width: 4rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    margin: 1.5rem auto;
+  }
+}
+
+/* ============ FONT UTILITIES ============ */
+.font-logo {
+  font-family: var(--font-logo);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.signature {
+  font-family: var(--font-script);
+  color: var(--color-primary-dark);
+  font-size: 1.4rem;
+  transform: rotate(-4deg);
+  display: inline-block;
+}
+
+/* ============ CUSTOM SCROLLBAR ============ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-stone-50);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: 10px;
+  border: 2px solid var(--color-stone-50);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ============ SMOOTH IMAGE LOADING ============ */
+img {
+  transition: opacity 0.6s ease;
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
